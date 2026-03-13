@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shine Laundry — Holiday Let Linen Service</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #e8f4fd;
+    --sky-mid: #c8e6f7;
+    --blue: #3a9bd5;
+    --blue-dark: #2278b0;
+    --blue-soft: #5baee0;
+    --coral: #f07b5a;
+    --coral-light: #fde8e0;
+    --green: #4caf82;
+    --green-light: #e3f5ec;
+    --warm-white: #fefcfa;
+    --cream: #faf7f2;
+    --text: #2d3f50;
+    --text-mid: #5a6e80;
+    --text-light: #8fa3b3;
+    --border: #e2edf5;
+    --shadow: rgba(58,155,213,0.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--warm-white); color: var(--text); overflow-x: hidden; line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 20px rgba(58,155,213,0.08);
+    animation: fadeDown 0.6s ease both;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; color: var(--blue-dark); text-decoration: none; }
+  .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--blue), var(--blue-dark)); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-links a { color: var(--text-mid); text-decoration: none; font-size: 0.92rem; font-weight: 600; transition: color 0.25s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta { background: var(--blue) !important; color: white !important; padding: 0.55rem 1.4rem; border-radius: 50px; font-weight: 700 !important; transition: all 0.25s !important; }
+  .nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(58,155,213,0.35) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #f0f8ff 0%, #e8f4fd 55%, #fef8f5 100%);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 7rem 4rem 4rem 5rem;
+    gap: 3rem; position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(58,155,213,0.07) 0%, transparent 70%); top: -150px; right: -100px; pointer-events: none; }
+  .hero::after { content: ''; position: absolute; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(240,123,90,0.06) 0%, transparent 70%); bottom: 30px; left: 80px; pointer-events: none; }
+  .hero-content { position: relative; z-index: 2; animation: fadeUp 0.8s 0.2s ease both; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green-light); color: var(--green); font-size: 0.8rem; font-weight: 700; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; }
+  h1 { font-family: 'Lora', serif; font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 1.2rem; }
+  h1 span { color: var(--blue); font-style: italic; }
+  .hero-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 42ch; margin-bottom: 2.5rem; line-height: 1.75; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary { background: var(--blue); color: white; padding: 0.85rem 2rem; border: none; border-radius: 50px; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.25s; box-shadow: 0 4px 18px rgba(58,155,213,0.3); }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(58,155,213,0.4); }
+  .btn-secondary { background: white; color: var(--blue); padding: 0.85rem 2rem; border: 2px solid var(--blue); border-radius: 50px; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.25s; }
+  .btn-secondary:hover { background: var(--sky); transform: translateY(-2px); }
+  .hero-trust { display: flex; align-items: center; gap: 0.8rem; margin-top: 2rem; font-size: 0.85rem; color: var(--text-light); font-weight: 600; }
+  .trust-stars { display: flex; gap: 2px; }
+  .hero-visual { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; animation: fadeIn 1s 0.5s ease both; }
+  .hero-card { background: white; border-radius: 24px; padding: 2.5rem; box-shadow: 0 20px 60px rgba(58,155,213,0.15); width: 340px; position: relative; }
+  .hero-card-badge { position: absolute; top: -14px; right: 24px; background: var(--coral); color: white; font-size: 0.72rem; font-weight: 800; padding: 0.3rem 0.9rem; border-radius: 50px; text-transform: uppercase; }
+  .hero-card h3 { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 1.5rem; }
+  .wash-items { display: flex; flex-direction: column; gap: 0.8rem; }
+  .wash-item { display: flex; align-items: center; gap: 0.9rem; padding: 0.7rem 1rem; border-radius: 12px; background: var(--sky); font-size: 0.88rem; font-weight: 600; color: var(--text); }
+  .item-check { margin-left: auto; width: 20px; height: 20px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .hero-card-footer { margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .turnaround-badge { background: var(--green-light); color: var(--green); padding: 0.35rem 0.8rem; border-radius: 50px; font-weight: 700; font-size: 0.8rem; }
+  .float-card { position: absolute; background: white; border-radius: 14px; padding: 0.7rem 1rem; box-shadow: 0 8px 28px rgba(58,155,213,0.14); display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; font-weight: 700; color: var(--text); white-space: nowrap; }
+  .float-card.fc1 { bottom: -20px; left: -40px; animation: float 3s ease-in-out infinite; }
+  .float-card.fc2 { top: 10px; right: -55px; animation: float 3s 0.8s ease-in-out infinite; }
+
+  /* SHARED */
+  .section-tag { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--sky); color: var(--blue); font-size: 0.78rem; font-weight: 700; padding: 0.35rem 0.9rem; border-radius: 50px; margin-bottom: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  h2 { font-family: 'Lora', serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 700; line-height: 1.25; color: var(--text); margin-bottom: 0.8rem; }
+  h2 em { font-style: italic; color: var(--blue); }
+
+  /* ABOUT */
+  .about { padding: 6rem 5rem; background: var(--warm-white); }
+  .about-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-text p { font-size: 1rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 1rem; }
+  .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .feat { display: flex; align-items: flex-start; gap: 0.8rem; background: var(--cream); border-radius: 16px; padding: 1.2rem; }
+  .feat-icon { width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px; background: white; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px var(--shadow); }
+  .feat-text strong { display: block; font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.15rem; }
+  .feat-text span { font-size: 0.8rem; color: var(--text-light); }
+  .about-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .about-stat { background: white; border-radius: 20px; padding: 1.8rem 1.5rem; text-align: center; box-shadow: 0 4px 24px var(--shadow); border: 1px solid var(--border); transition: transform 0.25s; }
+  .about-stat:hover { transform: translateY(-3px); }
+  .about-stat:nth-child(1) { background: linear-gradient(135deg, #e8f4fd, #d0ebf8); }
+  .about-stat:nth-child(2) { background: linear-gradient(135deg, #fde8e0, #fbd4c8); }
+  .about-stat:nth-child(3) { background: linear-gradient(135deg, #e3f5ec, #cceedc); }
+  .about-stat:nth-child(4) { background: linear-gradient(135deg, #fef8e8, #fdefc8); }
+  .about-stat-icon { width: 48px; height: 48px; background: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.8rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .about-stat strong { display: block; font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; color: var(--text); line-height: 1; }
+  .about-stat span { font-size: 0.78rem; color: var(--text-mid); font-weight: 600; margin-top: 0.3rem; display: block; }
+
+  /* SERVICES */
+  .services { padding: 6rem 5rem; background: var(--sky); }
+  .services-header { text-align: center; margin-bottom: 3.5rem; max-width: 1140px; margin-left: auto; margin-right: auto; margin-bottom: 3.5rem; }
+  .services-header p { color: var(--text-mid); max-width: 52ch; margin: 0.8rem auto 0; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1140px; margin: 0 auto; }
+  .service-card { background: white; border-radius: 20px; padding: 2rem; border: 1px solid var(--border); transition: all 0.3s; }
+  .service-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(58,155,213,0.14); border-color: var(--sky-mid); }
+  .service-icon { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+  .service-card h3 { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.6rem; }
+  .service-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.75; }
+  .service-tag { display: inline-block; margin-top: 1rem; background: var(--sky); color: var(--blue); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 50px; }
+
+  /* PROCESS */
+  .process { padding: 6rem 5rem; background: var(--warm-white); }
+  .process-header { text-align: center; margin-bottom: 3.5rem; }
+  .process-header p { color: var(--text-mid); max-width: 48ch; margin: 0.8rem auto 0; }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto; position: relative; }
+  .process-steps::before { content: ''; position: absolute; top: 38px; left: 12%; right: 12%; height: 2px; background: linear-gradient(to right, var(--sky-mid), var(--blue-soft), var(--sky-mid)); border-radius: 2px; }
+  .step { text-align: center; padding: 0 0.5rem; }
+  .step-dot { width: 76px; height: 76px; border-radius: 50%; background: white; border: 2px solid var(--sky-mid); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.4rem; position: relative; z-index: 1; box-shadow: 0 4px 16px var(--shadow); transition: all 0.3s; }
+  .step:hover .step-dot { border-color: var(--blue); transform: scale(1.08); box-shadow: 0 8px 28px rgba(58,155,213,0.2); }
+  .step-num { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; background: var(--blue); color: white; font-size: 0.68rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .step h4 { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+  .step p { font-size: 0.83rem; color: var(--text-mid); line-height: 1.7; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 6rem 5rem; background: var(--cream); }
+  .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+  .testimonials-header p { color: var(--text-mid); max-width: 48ch; margin: 0.8rem auto 0; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .testimonial-card { background: white; border-radius: 20px; padding: 2rem; border: 1px solid var(--border); transition: all 0.3s; }
+  .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(58,155,213,0.1); }
+  .t-stars { display: flex; gap: 3px; margin-bottom: 1rem; }
+  .testimonial-card p { font-size: 0.93rem; line-height: 1.8; color: var(--text-mid); margin-bottom: 1.4rem; font-style: italic; }
+  .t-author { display: flex; align-items: center; gap: 0.8rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .t-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .t-author strong { display: block; font-size: 0.88rem; font-weight: 700; color: var(--text); }
+  .t-author span { font-size: 0.78rem; color: var(--text-light); }
+
+  /* PRICING */
+  .pricing { padding: 6rem 5rem; background: linear-gradient(160deg, #e8f4fd 0%, #f0f8ff 100%); }
+  .pricing-header { text-align: center; margin-bottom: 3.5rem; }
+  .pricing-header p { color: var(--text-mid); max-width: 48ch; margin: 0.8rem auto 0; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .price-card { background: white; border-radius: 24px; padding: 2.5rem 2rem; text-align: center; border: 2px solid var(--border); transition: all 0.3s; position: relative; }
+  .price-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(58,155,213,0.15); }
+  .price-card.featured { border-color: var(--blue); box-shadow: 0 8px 40px rgba(58,155,213,0.18); }
+  .featured-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--blue); color: white; font-size: 0.72rem; font-weight: 800; padding: 0.3rem 1rem; border-radius: 50px; white-space: nowrap; }
+  .price-name { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); display: block; margin-bottom: 1.2rem; }
+  .price-icon { width: 60px; height: 60px; border-radius: 18px; margin: 0 auto 1.2rem; display: flex; align-items: center; justify-content: center; }
+  .price-amount { font-family: 'Lora', serif; font-size: 3rem; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 0.3rem; }
+  .price-amount sup { font-size: 1.4rem; vertical-align: super; }
+  .price-per { font-size: 0.82rem; color: var(--text-light); margin-bottom: 2rem; font-weight: 600; }
+  .price-features { list-style: none; text-align: left; margin-bottom: 2rem; }
+  .price-features li { font-size: 0.87rem; color: var(--text-mid); padding: 0.55rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem; font-weight: 500; }
+  .price-features li:last-child { border-bottom: none; }
+  .check-icon { flex-shrink: 0; }
+
+  /* CONTACT */
+  .contact-section { padding: 6rem 5rem; background: var(--warm-white); }
+  .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-info p { font-size: 1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-details { display: flex; flex-direction: column; gap: 0.8rem; }
+  .contact-item { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; background: var(--sky); border-radius: 14px; font-size: 0.9rem; font-weight: 600; color: var(--text); transition: background 0.25s; }
+  .contact-item:hover { background: var(--sky-mid); }
+  .contact-item-icon { width: 38px; height: 38px; background: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 8px var(--shadow); }
+  .contact-form { background: white; border-radius: 24px; padding: 2.5rem; border: 1px solid var(--border); box-shadow: 0 8px 40px var(--shadow); }
+  .contact-form h3 { font-family: 'Lora', serif; font-size: 1.3rem; font-weight: 600; color: var(--text); margin-bottom: 1.8rem; }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-mid); margin-bottom: 0.4rem; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem 1rem; border: 2px solid var(--border); border-radius: 12px; font-family: 'Nunito', sans-serif; font-size: 0.92rem; font-weight: 500; color: var(--text); background: var(--warm-white); transition: border-color 0.25s, box-shadow 0.25s; outline: none; -webkit-appearance: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(58,155,213,0.12); background: white; }
+  .form-group textarea { height: 100px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* MAP */
+  .map-section { padding: 6rem 5rem; background: var(--sky); }
+  .map-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: center; }
+  .map-text p { font-size: 1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 1.5rem; }
+  .map-address-card { display: flex; align-items: flex-start; gap: 1rem; background: white; border-radius: 16px; padding: 1.3rem 1.5rem; border: 1px solid var(--border); box-shadow: 0 4px 16px var(--shadow); }
+  .map-address-icon { width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; background: var(--sky); display: flex; align-items: center; justify-content: center; }
+  .map-address-card strong { display: block; font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+  .map-address-card span { display: block; font-size: 0.85rem; color: var(--text-mid); font-weight: 500; line-height: 1.6; }
+  .map-embed { height: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 48px rgba(58,155,213,0.15); border: 3px solid white; }
+  .map-embed iframe { width: 100%; height: 100%; display: block; }
+
+  /* FOOTER */
+  footer { background: var(--text); padding: 4rem 5rem 2rem; }
+  .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; max-width: 1140px; margin-left: auto; margin-right: auto; }
+  .footer-logo { display: flex; align-items: center; gap: 0.6rem; font-family: 'Lora', serif; font-size: 1.4rem; font-weight: 600; color: white; margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 30ch; }
+  .footer-col h5 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 800; margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.6rem; }
+  .footer-col a { text-decoration: none; font-size: 0.87rem; color: rgba(255,255,255,0.45); font-weight: 500; transition: color 0.25s; }
+  .footer-col a:hover { color: var(--blue-soft); }
+  .footer-bottom { max-width: 1140px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; color: rgba(255,255,255,0.25); font-weight: 500; }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+    .hero-visual { display: none; }
+    .about { padding: 4rem 1.5rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-features { grid-template-columns: 1fr; }
+    .services, .process, .testimonials, .pricing, .contact-section, .map-section { padding: 4rem 1.5rem; }
+    .services-grid, .testimonials-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .process-steps::before { display: none; }
+    .contact-inner, .map-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .map-embed { height: 300px; }
+    footer { padding: 3rem 1.5rem 1.5rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="icon-washer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="3"/>
+    <circle cx="12" cy="13" r="4"/>
+    <circle cx="6" cy="6" r="0.8" fill="currentColor" stroke="none"/>
+    <circle cx="9" cy="6" r="0.8" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="icon-towel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="6" width="18" height="14" rx="2"/>
+    <path d="M3 9h18"/>
+    <path d="M8 6V4a2 2 0 014 0v2"/>
+  </symbol>
+  <symbol id="icon-van" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="1" y="7" width="15" height="13" rx="1"/>
+    <path d="M16 7l4 4v9H16V7z"/>
+    <circle cx="5.5" cy="20" r="1.5"/>
+    <circle cx="18.5" cy="20" r="1.5"/>
+  </symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="12 6 12 12 16 14"/>
+  </symbol>
+  <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .91h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+  </symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+  </symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+    <circle cx="12" cy="10" r="3"/>
+  </symbol>
+  <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2"/>
+    <line x1="16" y1="2" x2="16" y2="6"/>
+    <line x1="8" y1="2" x2="8" y2="6"/>
+    <line x1="3" y1="10" x2="21" y2="10"/>
+  </symbol>
+  <symbol id="icon-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+  </symbol>
+  <symbol id="icon-package" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2l10 6.5v7L12 22 2 15.5v-7L12 2z"/>
+    <path d="M12 22V9"/>
+    <path d="M22 8.5l-10 6.5L2 8.5"/>
+    <path d="M7 5.3l10 6.3"/>
+  </symbol>
+  <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+    <polyline points="9 22 9 12 15 12 15 22"/>
+  </symbol>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="logo-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="5"/>
+        <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+      </svg>
+    </div>
+    Shine Laundry
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="14" height="14" style="color:var(--green)"><use href="#icon-sparkle"/></svg>
+      Holiday Let Specialists
+    </div>
+    <h1>Fresh linen,<br><span>happy guests.</span></h1>
+    <p class="hero-sub">We take care of all your laundry so you can focus on being a brilliant host. Collection, washing, and delivery — all sorted, on your schedule.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a Collection</a>
+      <a href="#services" class="btn-secondary">See What We Do</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-stars">
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+      </div>
+      <span>Loved by over 150 holiday let hosts</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div style="position:relative;">
+      <div class="hero-card">
+        <div class="hero-card-badge">Ready to collect</div>
+        <h3>Your next changeover</h3>
+        <div class="wash-items">
+          <div class="wash-item">
+            <svg width="20" height="20" style="color:var(--blue)"><use href="#icon-towel"/></svg>
+            <span>Bed linen — 3 sets</span>
+            <div class="item-check"><svg width="11" height="11" style="color:white"><use href="#icon-check"/></svg></div>
+          </div>
+          <div class="wash-item">
+            <svg width="20" height="20" style="color:var(--blue)"><use href="#icon-washer"/></svg>
+            <span>Bath towels — 6 pcs</span>
+            <div class="item-check"><svg width="11" height="11" style="color:white"><use href="#icon-check"/></svg></div>
+          </div>
+          <div class="wash-item">
+            <svg width="20" height="20" style="color:var(--blue)"><use href="#icon-package"/></svg>
+            <span>Kitchen linen — 4 pcs</span>
+            <div class="item-check"><svg width="11" height="11" style="color:white"><use href="#icon-check"/></svg></div>
+          </div>
+        </div>
+        <div class="hero-card-footer">
+          <span style="font-size:0.8rem;color:var(--text-mid);font-weight:600;">Back by 9am tomorrow</span>
+          <div class="turnaround-badge">24h</div>
+        </div>
+      </div>
+      <div class="float-card fc1">
+        <svg width="18" height="18" style="color:var(--coral)"><use href="#icon-home"/></svg>
+        <span>47 properties served</span>
+      </div>
+      <div class="float-card fc2">
+        <svg width="18" height="18" style="color:var(--green)"><use href="#icon-sparkle"/></svg>
+        <span>Hotel-quality results</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner reveal">
+    <div class="about-text">
+      <div class="section-tag"><svg width="12" height="12" style="color:var(--blue)"><use href="#icon-sparkle"/></svg> About Shine</div>
+      <h2>We're your laundry team, <em>not just a service</em></h2>
+      <p>Running a holiday let is a lot of work — and laundry can feel endless. That's where we come in. We're a friendly, local laundry business that genuinely cares about helping hosts like you.</p>
+      <p>Whether it's one cottage or a growing portfolio, we'll work around your booking schedule to make sure your guests always arrive to crisp, fresh linen.</p>
+      <div class="about-features">
+        <div class="feat">
+          <div class="feat-icon"><svg width="20" height="20" style="color:var(--blue)"><use href="#icon-van"/></svg></div>
+          <div class="feat-text"><strong>Free Collection</strong><span>We come to you</span></div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon"><svg width="20" height="20" style="color:var(--coral)"><use href="#icon-clock"/></svg></div>
+          <div class="feat-text"><strong>24hr Turnaround</strong><span>Always back in time</span></div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon"><svg width="20" height="20" style="color:var(--green)"><use href="#icon-washer"/></svg></div>
+          <div class="feat-text"><strong>Commercial Clean</strong><span>Hygienic every time</span></div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon"><svg width="20" height="20" style="color:#f5a623"><use href="#icon-star"/></svg></div>
+          <div class="feat-text"><strong>5-Star Rated</strong><span>Hosts love us</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-stat">
+        <div class="about-stat-icon"><svg width="24" height="24" style="color:var(--blue)"><use href="#icon-clock"/></svg></div>
+        <strong>24h</strong><span>Fast turnaround</span>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-icon"><svg width="24" height="24" style="color:var(--coral)"><use href="#icon-home"/></svg></div>
+        <strong>150+</strong><span>Happy hosts</span>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-icon"><svg width="24" height="24" style="color:var(--green)"><use href="#icon-check"/></svg></div>
+        <strong>100%</strong><span>Guest-ready</span>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-icon"><svg width="24" height="24" style="color:#f5a623"><use href="#icon-star"/></svg></div>
+        <strong>5.0★</strong><span>Average rating</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <div class="section-tag"><svg width="12" height="12" style="color:var(--blue)"><use href="#icon-washer"/></svg> What We Offer</div>
+    <h2>Everything your holiday let <em>needs</em></h2>
+    <p>From pillowcases to pool towels — if it needs washing, we've got it covered.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon" style="background:#e8f4fd;"><svg width="28" height="28" style="color:var(--blue)"><use href="#icon-towel"/></svg></div>
+      <h3>Bed Linen Laundry</h3>
+      <p>Duvet covers, sheets and pillowcases washed at 60°C for proper guest hygiene, then pressed and neatly folded.</p>
+      <span class="service-tag">Most Popular</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:#fde8e0;"><svg width="28" height="28" style="color:var(--coral)"><use href="#icon-washer"/></svg></div>
+      <h3>Towel Service</h3>
+      <p>Bath and hand towels returned fluffy, bright and soft. Hotel-style folding available on request.</p>
+      <span class="service-tag" style="background:var(--coral-light);color:var(--coral);">Add-On Available</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:#e3f5ec;"><svg width="28" height="28" style="color:var(--green)"><use href="#icon-package"/></svg></div>
+      <h3>Linen Hire</h3>
+      <p>Don't have enough sets for back-to-back bookings? Hire from our hotel-grade linen stock — always fresh and ready.</p>
+      <span class="service-tag" style="background:var(--green-light);color:var(--green);">Flexible Plans</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:#fef8e8;"><svg width="28" height="28" style="color:#e6a800"><use href="#icon-clock"/></svg></div>
+      <h3>Express Turnover</h3>
+      <p>Tight changeover window? Our same-day service gets everything back to you fast — book your priority slot in advance.</p>
+      <span class="service-tag" style="background:#fef8e8;color:#e6a800;">Priority Slot</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:#e8f4fd;"><svg width="28" height="28" style="color:var(--blue-soft)"><use href="#icon-home"/></svg></div>
+      <h3>Kitchen &amp; Table Linen</h3>
+      <p>Tablecloths, napkins, tea towels and oven gloves kept spotless. Stain treatment included as standard.</p>
+      <span class="service-tag">Full Bundle</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:#fde8e0;"><svg width="28" height="28" style="color:var(--coral)"><use href="#icon-sparkle"/></svg></div>
+      <h3>Guest Welcome Packs</h3>
+      <p>A little box of guest toiletries — shampoo, soap, conditioner — delivered with your clean linen. A lovely touch.</p>
+      <span class="service-tag" style="background:var(--coral-light);color:var(--coral);">New</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-header reveal">
+    <div class="section-tag"><svg width="12" height="12" style="color:var(--blue)"><use href="#icon-calendar"/></svg> How It Works</div>
+    <h2>Simple as <em>1, 2, 3, 4</em></h2>
+    <p>We've made the whole thing as easy as possible — because you've got enough on your plate.</p>
+  </div>
+  <div class="process-steps reveal">
+    <div class="step">
+      <div class="step-dot"><svg width="30" height="30" style="color:var(--blue)"><use href="#icon-calendar"/></svg><span class="step-num">1</span></div>
+      <h4>Book Online</h4>
+      <p>Pick a slot that fits your changeover. Takes about two minutes.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot"><svg width="30" height="30" style="color:var(--coral)"><use href="#icon-van"/></svg><span class="step-num">2</span></div>
+      <h4>We Collect</h4>
+      <p>We come to your property and take everything away in our clean bags.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot"><svg width="30" height="30" style="color:var(--green)"><use href="#icon-washer"/></svg><span class="step-num">3</span></div>
+      <h4>We Wash &amp; Press</h4>
+      <p>Washed at the right temperature, dried, and neatly folded.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot"><svg width="30" height="30" style="color:#e6a800"><use href="#icon-home"/></svg><span class="step-num">4</span></div>
+      <h4>We Deliver Back</h4>
+      <p>Back within 24 hours — guest-ready and looking great.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="testimonials-header reveal">
+    <div class="section-tag"><svg width="12" height="12" style="color:#f5a623"><use href="#icon-star"/></svg> What Hosts Say</div>
+    <h2>Real words from <em>real hosts</em></h2>
+    <p>We're proud that so many hosts trust us to look after their properties.</p>
+  </div>
+  <div class="testimonials-grid reveal">
+    <div class="testimonial-card">
+      <div class="t-stars">
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+      </div>
+      <p>"Shine completely transformed our changeover routine. The linen comes back looking better than when we bought it — guests always comment on the freshness."</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background:var(--sky);"><svg width="22" height="22" style="color:var(--blue)"><use href="#icon-home"/></svg></div>
+        <div><strong>Sarah M.</strong><span>Cottage owner, Lake District</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+      </div>
+      <p>"I manage five properties and honestly don't know how we coped before. The 24-hour turnaround means we've never had to delay a guest check-in."</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background:var(--coral-light);"><svg width="22" height="22" style="color:var(--coral)"><use href="#icon-home"/></svg></div>
+        <div><strong>Tom R.</strong><span>Portfolio host, Cornwall</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+        <svg width="16" height="16" style="color:#f5a623"><use href="#icon-star"/></svg>
+      </div>
+      <p>"The linen hire is brilliant for peak season. Having extra sets ready means we can take back-to-back bookings without any stress whatsoever."</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background:var(--green-light);"><svg width="22" height="22" style="color:var(--green)"><use href="#icon-home"/></svg></div>
+        <div><strong>Rachel K.</strong><span>Superhost, Yorkshire Dales</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-header reveal">
+    <div class="section-tag"><svg width="12" height="12" style="color:var(--blue)"><use href="#icon-sparkle"/></svg> Simple Pricing</div>
+    <h2>Honest prices, <em>no hidden extras</em></h2>
+    <p>Free collection and delivery included with all plans. No surprises on your bill.</p>
+  </div>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <span class="price-name">Single Let</span>
+      <div class="price-icon" style="background:var(--sky);"><svg width="30" height="30" style="color:var(--blue)"><use href="#icon-towel"/></svg></div>
+      <div class="price-amount"><sup>£</sup>12</div>
+      <div class="price-per">per bed set</div>
+      <ul class="price-features">
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Sheets, duvet cover &amp; pillowcases</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>24-hour turnaround</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Free collection &amp; delivery</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Pressed &amp; neatly folded</li>
+      </ul>
+      <a href="#contact" class="btn-secondary" style="width:100%;text-align:center;display:block;">Get Started</a>
+    </div>
+    <div class="price-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <span class="price-name">Host Bundle</span>
+      <div class="price-icon" style="background:var(--sky);"><svg width="30" height="30" style="color:var(--blue)"><use href="#icon-washer"/></svg></div>
+      <div class="price-amount"><sup>£</sup>89</div>
+      <div class="price-per">per changeover</div>
+      <ul class="price-features">
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>All bed linen (up to 3 beds)</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>All towels included</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Kitchen &amp; table linen</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Priority 12-hour turnaround</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>SMS updates on your order</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="width:100%;text-align:center;display:block;">Book Now</a>
+    </div>
+    <div class="price-card">
+      <span class="price-name">Portfolio</span>
+      <div class="price-icon" style="background:var(--green-light);"><svg width="30" height="30" style="color:var(--green)"><use href="#icon-home"/></svg></div>
+      <div class="price-amount" style="font-size:2.2rem;margin-top:0.3rem;">Custom</div>
+      <div class="price-per">bespoke quote</div>
+      <ul class="price-features">
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Multiple properties</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Dedicated account manager</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Linen hire stock included</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Welcome pack add-on option</li>
+        <li><svg class="check-icon" width="18" height="18" style="color:var(--green)"><use href="#icon-check"/></svg>Priority scheduling</li>
+      </ul>
+      <a href="#contact" class="btn-secondary" style="width:100%;text-align:center;display:block;">Let's Chat</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner reveal">
+    <div class="contact-info">
+      <div class="section-tag"><svg width="12" height="12" style="color:var(--blue)"><use href="#icon-mail"/></svg> Get In Touch</div>
+      <h2>Let's make your <em>life easier</em></h2>
+      <p>Drop us a message and we'll get back to you quickly with availability and a quote. No pressure — just a friendly chat.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="20" height="20" style="color:var(--blue)"><use href="#icon-phone"/></svg></div>
+          <span>01234 567 890</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="20" height="20" style="color:var(--blue)"><use href="#icon-mail"/></svg></div>
+          <span>hello@shinelaundry.co.uk</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="20" height="20" style="color:var(--blue)"><use href="#icon-clock"/></svg></div>
+          <span>Mon–Sat, 7am–7pm</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="20" height="20" style="color:var(--blue)"><use href="#icon-pin"/></svg></div>
+          <span>10 Glamis Street, Bognor Regis, PO21 1DQ</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Send us a message</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Jane">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="jane@example.com">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="07700 900 000">
+      </div>
+      <div class="form-group">
+        <label>I'm interested in...</label>
+        <select>
+          <option>Select a service...</option>
+          <option>Bed Linen Laundry</option>
+          <option>Towel Service</option>
+          <option>Linen Hire</option>
+          <option>Express Turnover</option>
+          <option>Host Bundle</option>
+          <option>Portfolio / Multiple Properties</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell us about your property</label>
+        <textarea placeholder="Number of beds, how many properties, how often you need us..."></textarea>
+      </div>
+      <button class="btn-primary" id="submit-btn" style="width:100%;text-align:center;font-size:0.95rem;">Send My Enquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="map">
+  <div class="map-inner reveal">
+    <div class="map-text">
+      <div class="section-tag"><svg width="12" height="12" style="color:var(--blue)"><use href="#icon-pin"/></svg> Find Us</div>
+      <h2>Come and <em>say hello</em></h2>
+      <p>We're based in Bognor Regis and collect across the local area. Pop in or give us a call — we're always happy to chat about how we can help.</p>
+      <div class="map-address-card">
+        <div class="map-address-icon"><svg width="22" height="22" style="color:var(--blue)"><use href="#icon-pin"/></svg></div>
+        <div>
+          <strong>Shine Laundry</strong>
+          <span>10 Glamis Street</span>
+          <span>Bognor Regis, PO21 1DQ</span>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=10+Glamis+Street+Bognor+Regis+PO21+1DQ" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;">
+        <svg width="16" height="16" style="color:white"><use href="#icon-van"/></svg>
+        Get Directions
+      </a>
+    </div>
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d-0.6733247!3d50.7869725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4875ab46aad2eb4f%3A0x350bb7f93956d40a!2s10%20Glamis%20St%2C%20Bognor%20Regis%20PO21%201DQ%2C%20UK!5e0!3m2!1sen!2suk!4v1700000000000"
+        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="logo-icon" style="width:32px;height:32px;border-radius:9px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+          </svg>
+        </div>
+        Shine Laundry
+      </div>
+      <p>Friendly, reliable laundry and linen service for holiday let owners. We make changeovers easy.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Bed Linen</a></li>
+        <li><a href="#">Towel Service</a></li>
+        <li><a href="#">Linen Hire</a></li>
+        <li><a href="#">Express Turnover</a></li>
+        <li><a href="#">Welcome Packs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">How It Works</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms &amp; Conditions</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Shine Laundry. All rights reserved.</span>
+    <span>Made with care for holiday hosts</span>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  document.getElementById('submit-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    this.innerHTML = '<svg width="18" height="18" style="color:white;vertical-align:middle;margin-right:6px"><use href="#icon-check"/></svg> Sent! We\'ll be in touch soon';
+    this.style.background = 'var(--green)';
+    this.style.boxShadow = '0 4px 18px rgba(76,175,130,0.35)';
+  });
+</script>
+</body>
+</html>
